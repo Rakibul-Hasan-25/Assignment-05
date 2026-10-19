@@ -16,6 +16,14 @@ export default function Technologies({ technologiesPromise }: TechnologiesProps)
             return [...current, technology];
         });
     }
+    function deleteTechnology(technology:Technology){
+        setSelectedTechnologies((received) =>
+            received.filter((item) => item.id !== technology.id)
+        );
+    }
+    function deleteTechnologies(){
+        setSelectedTechnologies([]);
+    }
     return (
         <>
             {/* the main container of the technologies and stack section */}
@@ -35,7 +43,7 @@ export default function Technologies({ technologiesPromise }: TechnologiesProps)
                     </div>
                     {/* container of the stack section */}
                     <div className="">
-                        <TechnologyStack selectedTechnologies={selectedTechnologies}></TechnologyStack>
+                        <TechnologyStack selectedTechnologies={selectedTechnologies} deleteTechnology={deleteTechnology} deleteTechnologies={deleteTechnologies}></TechnologyStack>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import { DeleteIcon } from "lucide-react"
 import type { TechnologyStackProps } from "../types/technologiesType"
 
-export default function TechnologyStack({ selectedTechnologies }: TechnologyStackProps) {
+export default function TechnologyStack({ selectedTechnologies,deleteTechnology, deleteTechnologies }: TechnologyStackProps) {
     return (
         // Main technology stack container
         <div className="flex flex-col gap-4  max-w-80 border rounded-[10px] border-gray-300 pl-3">
@@ -24,12 +24,12 @@ export default function TechnologyStack({ selectedTechnologies }: TechnologyStac
                         </div>
                         {/* Stack card right side container */}
                         <div>
-                            <button type="button" className=""><DeleteIcon color="gray" /></button>
+                            <button onClick={() => deleteTechnology(selectedTechnology)} type="button" className=""><DeleteIcon color="gray" /></button>
                         </div>
                     </div>
                 ))}
             </div>
-            <button className="font-bold text-xl border border-amber-600 text-amber-600 max-w-70 rounded-[5px]" type="button">Remove All</button>
+            <button onClick={()=>deleteTechnologies()} className="font-bold text-xl border border-amber-600 text-amber-600 max-w-70 rounded-[5px]" type="button">Remove All</button>
         </div>
     )
 }

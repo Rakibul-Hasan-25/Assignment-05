@@ -32,4 +32,6 @@ export interface TechnologyCardProps{
 }
 export interface TechnologyStackProps{
   selectedTechnologies:Technology[];
+  deleteTechnology:(technology:Technology)=>void;
+  deleteTechnologies:()=>void;
 }

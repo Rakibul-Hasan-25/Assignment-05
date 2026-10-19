@@ -1,4 +1,4 @@
-import type { Technology, TechnologyCardProps } from "../types/technologiesType";
+import type { TechnologyCardProps } from "../types/technologiesType";
 import { StarIcon } from "lucide-react";
 export default function TechnologyCard({ technology,addToStack }: TechnologyCardProps) {
     return (
