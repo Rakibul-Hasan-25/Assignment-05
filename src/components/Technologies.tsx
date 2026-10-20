@@ -2,27 +2,32 @@ import { use, useState } from "react";
 import type { TechnologiesProps, Technology } from "../types/technologiesType";
 import TechnologyCard from "./TechnologyCard";
 import TechnologyStack from "./TechnologyStack";
+import { toast } from "react-toastify";
 
 export default function Technologies({ technologiesPromise }: TechnologiesProps) {
     const technologies = use(technologiesPromise);
     const [selectedTechnologies, setSelectedTechnologies] = useState<Technology[]>([]);
     function addToStack(technology: Technology) {
-        setSelectedTechnologies((current) => {
-            // Prevent duplicate technologies
-            if (current.some((item) => item.id === technology.id)) {
-                return current;
-            }
-
-            return [...current, technology];
-        });
+        if (selectedTechnologies.some((item) => item.id === technology.id)) {
+            toast.warning("Already added to the stack.");
+            return;
+        }
+        setSelectedTechnologies((current) => [...current, technology,]);
+        toast.success(`${technology.name} added to the stack.`);
     }
     function deleteTechnology(technology: Technology) {
         setSelectedTechnologies((received) =>
             received.filter((item) => item.id !== technology.id)
         );
+        toast.warning(`${technology.name} removed form the stack.`);
     }
     function deleteTechnologies() {
+        if (selectedTechnologies.length === 0) {
+            toast.info(`The stack is already empty.`);
+            return;
+        }
         setSelectedTechnologies([]);
+        toast.warning(`All the technologies removed from the stack.`);
     }
     return (
         <>
@@ -39,9 +44,12 @@ export default function Technologies({ technologiesPromise }: TechnologiesProps)
                     <div className="flex flex-wrap-reverse gap-3 justify-center sm:justify-start">
                         {/* Technology card main container */}
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 justify-items-center md:justify-items-start">
-                            {technologies.map((technology) =>
-                                <TechnologyCard technology={technology} addToStack={addToStack} key={technology.id}></TechnologyCard>
-                            )}
+                            {technologies.map((technology) => (
+                                <TechnologyCard technology={technology} addToStack={addToStack} key={technology.id}
+                                    isAdded={selectedTechnologies.some(
+                                        (item) => item.id === technology.id
+                                    )}></TechnologyCard>
+                            ))}
                         </div>
                         {/* container of the stack section */}
                         <div className="">

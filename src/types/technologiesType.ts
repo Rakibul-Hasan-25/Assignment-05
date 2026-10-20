@@ -29,6 +29,7 @@ export interface TechnologiesProps {
 export interface TechnologyCardProps{
   technology:Technology;
   addToStack:(technology:Technology)=> void;
+  isAdded:boolean;
 }
 export interface TechnologyStackProps{
   selectedTechnologies:Technology[];

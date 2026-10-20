@@ -1,6 +1,6 @@
 import type { TechnologyCardProps } from "../types/technologiesType";
-import { StarIcon } from "lucide-react";
-export default function TechnologyCard({ technology,addToStack }: TechnologyCardProps) {
+import { StarIcon,Check } from "lucide-react";
+export default function TechnologyCard({ technology,addToStack,isAdded }: TechnologyCardProps) {
     return (
         // technology card container
         <div className="flex flex-col h-70 justify-evenly max-w-75 rounded-2xl border border-gray-200  p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg">
@@ -25,7 +25,8 @@ export default function TechnologyCard({ technology,addToStack }: TechnologyCard
                 <span className="flex items-center gap-0.5"><StarIcon className="inline-block" fill="gold" color="gold" size={15} /> {technology.rating}</span>
             </div>
             {/* Technology card bottom button */}
-            <button type="button" onClick={()=>addToStack(technology)}  className="bg-mauve-900 text-amber-50 px-4 py-1 rounded-[5px]">Add to Stack</button>
+            <button disabled={isAdded} type="button" onClick={() => addToStack(technology)} className="bg-black text-amber-50 px-4 py-1 rounded-[5px] hover:c-b-g">{isAdded ? <div className="flex justify-center items-center"><Check size={18}/> Added to Stack</div> : "Add to Stack"}
+            </button>
         </div>
     )
 }
