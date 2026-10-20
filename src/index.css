@@ -1,6 +1,14 @@
 @import "tailwindcss";
-
-body{
-  margin: 0;
-  padding: 0;
+:root{
+  --custom-brand-gradient:linear-gradient(to right, #f97316,#ec4899,#8b5cf6);
+}
+@utility c-b-g{
+  background-image:var(--custom-brand-gradient);
+}
+@utility h-c-b-g {
+  &:hover {
+    background-image: var(--custom-brand-gradient);
+    background-clip: text;
+    color: transparent;
+  }
 }

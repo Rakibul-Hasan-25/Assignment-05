@@ -3,7 +3,7 @@ import { StarIcon } from "lucide-react";
 export default function TechnologyCard({ technology,addToStack }: TechnologyCardProps) {
     return (
         // technology card container
-        <div className="flex flex-col h-70 justify-evenly max-w-70 rounded-2xl border border-gray-200  p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg">
+        <div className="flex flex-col h-70 justify-evenly max-w-75 rounded-2xl border border-gray-200  p-6 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-violet-300 hover:shadow-lg">
             {/* Technology card top part container */}
             <div className="flex justify-between ">
                 <img className="max-w-6" src={technology.icon} alt="technoogy logo" />
